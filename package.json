@@ -1,0 +1,23 @@
+{
+  "name": "claude-jsx-viewer",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node viewer-server.mjs"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.25.9",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.542.0",
+    "postcss": "^8.5.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "recharts": "^3.1.2",
+    "tailwindcss": "^3.4.17"
+  }
+}
