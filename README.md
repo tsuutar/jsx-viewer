@@ -1,14 +1,7 @@
 # JSX Viewer
 
-Version 1.1
-
 Claude / ChatGPT などが生成した `.jsx` / `.tsx` を、できるだけ手軽にローカル表示するためのビューアーです。
-
-## 必要なもの
-
-- Windows 11
-- Node.js LTS
-- 初回のみインターネット接続（npm install 用）
+Windows 11 PCをサーバとして起動し、同じLAN/Wi-Fi上のスマートフォンから JSX / TSX をアップロードしてプレビューできます。
 
 ## 最短の使い方
 
@@ -17,7 +10,52 @@ Claude / ChatGPT などが生成した `.jsx` / `.tsx` を、できるだけ手�
 3. 初回だけ `npm install` が自動実行される
 4. ブラウザが自動で開く
 
-`viewer.bat` を普通にダブルクリックした場合は、ファイル選択ダイアログが開きます。
+## スマホからの操作
+
+URLが表示されるためスマートフォンを同じWi-Fiに接続し、`LAN` のURLへアクセスしてください。
+
+1. `server.bat` を起動
+2. JSX / TSX ファイルを選択
+3. 「アップロードして開く」
+4. プレビュー表示
+5. 「一覧」で戻り、アップロード済みファイルを切替
+6. 不要なファイルは一覧から削除
+
+### ポート番号を変更する
+
+デフォルトは `5180` です。`PORT` 環境変数で変更できます。
+
+```bat
+set PORT=8080
+server.bat
+```
+
+PowerShell の場合:
+
+```powershell
+$env:PORT=8080; .\server.bat
+```
+
+アップロード済みデータは `uploads` フォルダへ保存されます。
+
+## PC上の .jsx ダブルクリック
+
+従来どおり `.jsx` を `viewer.bat "%1"` に関連付けできます。
+
+- サーバ起動済み: そのサーバへJSXを登録して開く
+- サーバ未起動: サーバを自動起動してから登録して開く
+
+`C:\dev\jsx-viewer\viewer.bat` に配置する場合は、付属の `register-jsx-viewer.bat` を利用できます。
+
+## Windows の「送る」に登録する場合
+
+`viewer.bat` のショートカットを次へ置くと便利です。
+
+```text
+%APPDATA%\Microsoft\Windows\SendTo
+```
+
+すると JSX を右クリック → `送る` → JSX Viewer のように開けます。
 
 ## 対応しているもの
 
@@ -27,48 +65,19 @@ Claude / ChatGPT などが生成した `.jsx` / `.tsx` を、できるだけ手�
 - `lucide-react`
 - `recharts`
 - `framer-motion`
-- 対象 JSX からの相対 import
-- `@/...` を対象 JSX のあるディレクトリ基準で解決
-- Claude Artifacts で頻出する一部 `@/components/ui/*` を簡易スタブで表示
+- 一部の `@/components/ui/*` (shadcn/ui) 簡易表示
 
-簡易対応済み shadcn/ui:
+## 現在の制約
 
-- button
-- card
-- input
-- textarea
-- label
-- badge
-- separator
-- tabs
-- alert
-- switch
+スマホブラウザからのアップロードは **1ファイル完結型JSX** を前提とします。
 
-## 例
+例えば以下は単一ファイルアップロードだけでは解決できません。
 
 ```jsx
-import React, { useState } from "react";
-import { Search } from "lucide-react";
-
-export default function Sample() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <main className="min-h-screen bg-slate-100 p-8">
-      <div className="mx-auto max-w-xl rounded-xl bg-white p-6 shadow">
-        <Search className="mb-3 h-6 w-6" />
-        <h1 className="text-2xl font-bold">Claude JSX Viewer</h1>
-        <button
-          className="mt-4 rounded bg-slate-900 px-4 py-2 text-white"
-          onClick={() => setCount((v) => v + 1)}
-        >
-          count: {count}
-        </button>
-      </div>
-    </main>
-  );
-}
+import Header from "./Header.jsx";
 ```
+
+npmパッケージのimportは、Viewerの `node_modules` に入っているパッケージなら解決できます。
 
 ## JSXを修正した場合
 
@@ -117,17 +126,6 @@ Radix UI に依存する複雑なコンポーネントや高度な interaction �
 
 ## セキュリティ上の注意
 
-JSX は通常の JavaScript としてブラウザ上で実行されます。
-出所の分からない JSX を開かないでください。
+サーバはLAN利用のため、デフォルトでは `0.0.0.0:5180` で待受します。
 
-この Viewer は localhost のみで待ち受けますが、表示したコード自体はブラウザの JavaScript として動作します。
-
-## Windows の「送る」に登録する場合
-
-`viewer.bat` のショートカットを次へ置くと便利です。
-
-```text
-%APPDATA%\Microsoft\Windows\SendTo
-```
-
-すると JSX を右クリック → `送る` → JSX Viewer のように開けます。
+- JSXはJavaScriptとして実行されるため、出所不明のJSXを実行しないでください。

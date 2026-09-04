@@ -1,15 +1,12 @@
 {
   "name": "claude-jsx-viewer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node viewer-server.mjs"
+    "start": "node server.mjs"
   },
   "dependencies": {
-    "@radix-ui/react-dialog": "^1.1.15",
-    "@radix-ui/react-dropdown-menu": "^2.1.16",
-    "@radix-ui/react-tabs": "^1.1.13",
     "autoprefixer": "^10.4.21",
     "esbuild": "^0.25.9",
     "framer-motion": "^12.23.12",
