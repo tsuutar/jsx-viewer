@@ -1,10 +1,11 @@
 @echo off
 setlocal EnableExtensions DisableDelayedExpansion
 cd /d "%~dp0"
+if exist "%~dp0env.bat" call "%~dp0env.bat"
 
 where node >nul 2>nul
 if errorlevel 1 (
-  echo [ERROR] Node.js ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB
+  echo [ERROR] Node.js ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B
   pause
   exit /b 1
 )
@@ -17,7 +18,7 @@ if not defined TARGET (
 )
 
 if not exist "%TARGET%" (
-  echo [ERROR] ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ:
+  echo [ERROR] ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½:
   echo %TARGET%
   pause
   exit /b 1
@@ -31,7 +32,7 @@ if not exist "node_modules\esbuild" (
   )
 )
 
-rem PCã‚ÌŠù‘¶JSX‚ÍƒAƒbƒvƒ[ƒh‚¹‚¸A‚»‚Ìê‚Å’¼ÚŠJ‚­
+rem PCï¿½ï¿½ÌŠï¿½ï¿½ï¿½JSXï¿½ÍƒAï¿½bï¿½vï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Ìï¿½Å’ï¿½ï¿½ÚŠJï¿½ï¿½
 node local-viewer.mjs "%TARGET%"
 
 exit /b %ERRORLEVEL%

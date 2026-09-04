@@ -23,17 +23,10 @@ URLが表示されるためスマートフォンを同じWi-Fiに接続し、`LA
 
 ### ポート番号を変更する
 
-デフォルトは `5180` です。`PORT` 環境変数で変更できます。
+デフォルトは `5180` です。フォルダ内の `env.bat` を編集して変更できます。
 
 ```bat
-set PORT=8080
-server.bat
-```
-
-PowerShell の場合:
-
-```powershell
-$env:PORT=8080; .\server.bat
+set "PORT=8080"
 ```
 
 アップロード済みデータは `uploads` フォルダへ保存されます。

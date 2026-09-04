@@ -1,12 +1,13 @@
 @echo off
 setlocal EnableExtensions DisableDelayedExpansion
 cd /d "%~dp0"
+if exist "%~dp0env.bat" call "%~dp0env.bat"
 
 where node >nul 2>nul
 if errorlevel 1 (
   echo.
-  echo [ERROR] Node.js ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB
-  echo Node.js LTS ‚ğƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
+  echo [ERROR] Node.js ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B
+  echo Node.js LTS ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
   echo https://nodejs.org/
   echo.
   pause
@@ -15,12 +16,12 @@ if errorlevel 1 (
 
 if not exist "node_modules\esbuild" (
   echo.
-  echo ‰‰ñƒZƒbƒgƒAƒbƒv: npm ƒpƒbƒP[ƒW‚ğƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚¢‚Ü‚·...
+  echo ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½Aï¿½bï¿½v: npm ï¿½pï¿½bï¿½Pï¿½[ï¿½Wï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½...
   echo.
   call npm install
   if errorlevel 1 (
     echo.
-    echo [ERROR] npm install ‚É¸”s‚µ‚Ü‚µ‚½B
+    echo [ERROR] npm install ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
     pause
     exit /b 1
   )
@@ -29,5 +30,5 @@ if not exist "node_modules\esbuild" (
 node server.mjs
 
 echo.
-echo JSX Viewer Server ‚ğI—¹‚µ‚Ü‚µ‚½B
+echo JSX Viewer Server ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 pause
